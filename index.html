@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4eee5" />
+  <title>내내의 웹앱 포트폴리오</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+    :root{
+      --bg:#f7f2ea;
+      --paper:#fffdf9;
+      --ink:#433a34;
+      --muted:#83766d;
+      --line:#ded3c8;
+      --brown:#765d4d;
+      --brown-dark:#574237;
+      --beige:#eadcca;
+      --beige-light:#f4eadc;
+      --green:#68795f;
+      --shadow:0 12px 35px rgba(80,60,45,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.8), transparent 28%),
+        radial-gradient(circle at 90% 25%, rgba(229,214,194,.45), transparent 26%),
+        var(--bg);
+      font-family:"Noto Sans KR",sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    header{padding:76px 0 38px;text-align:center}
+    .eyebrow{
+      display:inline-block;padding:7px 13px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,253,249,.7);
+      font-size:12px;letter-spacing:.14em;color:var(--muted);font-weight:700;
+    }
+    h1{
+      margin:17px 0 8px;font-family:"Gaegu",cursive;font-size:clamp(44px,8vw,76px);
+      line-height:1;color:var(--brown-dark);letter-spacing:-.03em;
+    }
+    .intro{max-width:650px;margin:0 auto;color:var(--muted);font-size:15px}
+    .stats{
+      margin:32px auto 0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+    }
+    .stat{
+      min-width:112px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);
+      border-radius:16px;box-shadow:0 6px 20px rgba(80,60,45,.04);
+    }
+    .stat b{display:block;font-size:21px;color:var(--brown)}
+    .stat span{font-size:11px;color:var(--muted)}
+    .section-head{
+      margin:36px 0 17px;display:flex;align-items:end;justify-content:space-between;gap:16px;
+    }
+    .section-head h2{margin:0;font-family:"Gaegu",cursive;font-size:30px;color:var(--brown-dark)}
+    .section-head p{margin:0;font-size:12px;color:var(--muted)}
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:34px;
+    }
+    .card{
+      min-height:260px;background:rgba(255,253,249,.92);border:1px solid var(--line);
+      border-radius:24px;padding:24px;display:flex;flex-direction:column;
+      box-shadow:var(--shadow);transition:.2s ease;position:relative;overflow:hidden;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(80,60,45,.12)}
+    .card::after{
+      content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+      right:-40px;top:-40px;background:var(--beige-light);opacity:.8;
+    }
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1}
+    .icon{
+      width:46px;height:46px;display:grid;place-items:center;border-radius:15px;
+      background:var(--beige-light);font-size:23px;
+    }
+    .badge{
+      padding:5px 9px;border-radius:999px;background:#eef2ea;color:var(--green);
+      font-size:10px;font-weight:700;border:1px solid #dce4d7;
+    }
+    .badge.local{background:#f2eee9;color:#796c63;border-color:#e2d8cf}
+    .card h3{
+      margin:20px 0 7px;font-family:"Gaegu",cursive;font-size:27px;line-height:1.1;color:var(--brown-dark)
+    }
+    .card p{margin:0;color:var(--muted);font-size:13px;flex:1}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0}
+    .tag{
+      font-size:10px;color:#76685f;background:#f5efe7;border:1px solid #e7ddd3;
+      padding:4px 7px;border-radius:8px;
+    }
+    .btn{
+      text-decoration:none;text-align:center;border-radius:12px;padding:10px 12px;
+      background:var(--brown);color:white;font-size:12px;font-weight:700;transition:.15s;
+    }
+    .btn:hover{background:var(--brown-dark)}
+    .btn.disabled{background:#d8cec5;color:#81756d;cursor:default}
+    .note{
+      margin:4px 0 70px;padding:24px 26px;border:1px dashed #cdbfb2;border-radius:22px;
+      background:rgba(255,253,249,.58);text-align:center;color:var(--muted);font-size:13px;
+    }
+    .note strong{font-family:"Gaegu",cursive;font-size:21px;color:var(--brown)}
+    footer{
+      border-top:1px solid var(--line);padding:28px 0 40px;text-align:center;color:#998b81;font-size:11px;
+    }
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){
+      .wrap{width:min(100% - 22px,1120px)}
+      header{padding:50px 0 25px}
+      .grid{grid-template-columns:1fr;gap:13px}
+      .card{min-height:235px;padding:21px;border-radius:20px}
+      .section-head{align-items:start;flex-direction:column;gap:2px}
+      .stats{gap:7px}.stat{min-width:95px;padding:9px 12px}.stat b{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="eyebrow">MY LITTLE WEB APP COLLECTION</div>
+    <h1>내내의 웹앱 포트폴리오</h1>
+    <p class="intro">필요한 게 없으면 직접 만들어 쓰는 중. 창작 도구부터 기록, 생활 관리까지 하나씩 쌓아가는 작은 웹앱 모음입니다.</p>
+    <div class="stats">
+      <div class="stat"><b>8</b><span>만든 웹앱</span></div>
+      <div class="stat"><b>8</b><span>온라인 배포</span></div>
+      <div class="stat"><b>0</b><span>로컬 전용</span></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="section-head">
+      <h2>만든 것들</h2>
+      <p>카드를 누르면 각 웹앱으로 이동합니다.</p>
+    </div>
+
+    <section class="grid">
+      <article class="card">
+        <div class="top"><div class="icon">🎲</div><span class="badge">배포 중</span></div>
+        <h3>키워드 랜덤 조합</h3>
+        <p>인물, 관계, 소재와 기타 키워드를 조합해 새로운 이야기의 출발점을 만드는 창작용 랜덤 프롬프트 도구.</p>
+        <div class="tags"><span class="tag">창작</span><span class="tag">랜덤 조합</span><span class="tag">GitHub Pages</span></div>
+        <a class="btn" href="https://neneggunyang.github.io/story-prompt-generator/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">🎨</div><span class="badge">배포 중</span></div>
+        <h3>만다라트 아트</h3>
+        <p>가볍게 목표와 생각을 펼쳐볼 수 있는 3×3 미니 만다라트. 부담 없이 한 화면에서 아이디어를 정리하는 도구.</p>
+        <div class="tags"><span class="tag">목표 정리</span><span class="tag">3×3</span><span class="tag">Cloudflare</span></div>
+        <a class="btn" href="https://mandalart-art.deliciousnene.workers.dev/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">🧩</div><span class="badge">배포 중</span></div>
+        <h3>만다라트 프로젝트</h3>
+        <p>하나의 중심 목표에서 세부 목표를 확장하는 9×9 만다라트. 색상 팔레트와 이미지 저장 기능을 갖춘 확장형 버전.</p>
+        <div class="tags"><span class="tag">목표 설계</span><span class="tag">9×9</span><span class="tag">PNG 저장</span></div>
+        <a class="btn" href="https://mandalart-project.deliciousnene.workers.dev/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">📓</div><span class="badge">운영 중</span></div>
+        <h3>막노트</h3>
+        <p>손으로 쓴 메모 사진과 할 일을 한곳에 모으는 브레인덤프 공간. 이미지 기록, 달력, 우선순위 To Do를 함께 관리.</p>
+        <div class="tags"><span class="tag">기록</span><span class="tag">To Do</span><span class="tag">Netlify</span></div>
+        <a class="btn" href="https://bucolic-croquembouche-c990af.netlify.app/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">🧊</div><span class="badge">배포 중</span></div>
+        <h3>냉장고 관리</h3>
+        <p>냉장고에 무엇이 언제 들어왔는지 기록하고 식재료를 한눈에 확인하기 위한 개인용 냉장고 관리 도구.</p>
+        <div class="tags"><span class="tag">생활 관리</span><span class="tag">식재료</span><span class="tag">GitHub Pages</span></div>
+        <a class="btn" href="https://neneggunyang.github.io/fridge-manager/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">📖</div><span class="badge">배포 중</span></div>
+        <h3>필사 아카이브</h3>
+        <p>마음에 남은 문장을 책별로 차곡차곡 기록하는 필사 보관함. 책과 문장을 중심으로 간결하게 아카이빙.</p>
+        <div class="tags"><span class="tag">필사</span><span class="tag">아카이브</span><span class="tag">Netlify</span></div>
+        <a class="btn" href="https://bespoke-seahorse-450aef.netlify.app/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">⚖️</div><span class="badge">배포 중</span></div>
+        <h3>소비재판소</h3>
+        <p>내 소비를 사건으로 접수하고 스스로 판결을 내려보는 소비 기록 도구. 재미있는 형식으로 지출을 되돌아본다.</p>
+        <div class="tags"><span class="tag">소비 기록</span><span class="tag">생활</span><span class="tag">GitHub Pages</span></div>
+        <a class="btn" href="https://neneggunyang.github.io/consumer-court/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+
+      <article class="card">
+        <div class="top"><div class="icon">🍚</div><span class="badge">배포 중</span></div>
+        <h3>밥친구 아카이브</h3>
+        <p>밥 먹을 때 함께 보기 좋은 콘텐츠를 모아두는 개인 아카이브. 오늘의 밥친구를 찾기 쉽게 기록하고 꺼내본다.</p>
+        <div class="tags"><span class="tag">콘텐츠</span><span class="tag">아카이브</span><span class="tag">GitHub Pages</span></div>
+        <a class="btn" href="https://neneggunyang.github.io/rice-buddy/" target="_blank" rel="noopener">웹앱 열기 →</a>
+      </article>
+    </section>
+
+    <div class="note">
+      <strong>계속 만드는 중!</strong><br>
+      거창한 서비스보다 지금 나에게 필요한 작은 도구를 직접 만들어 사용합니다.<br>
+      새 웹앱이 생기면 이곳에도 하나씩 추가할 예정입니다.
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Made with curiosity, trial & error, and a lot of tiny ideas.</div>
+  </footer>
+</body>
+</html>
